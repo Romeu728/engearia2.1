@@ -50,6 +50,7 @@ h1 { margin: 0; color: #f4f2fb; font-size: clamp(2.4rem, 7vw, 4.6rem); font-weig
 .example:hover { border-color: #8274bf; }
 .status { min-height: 1.4em; margin: 18px 0 0; color: #99a6ba; font-size: .82rem; line-height: 1.5; }
 .status.error { color: #ff9a9a; }
+.status.deployment-notice { max-width: 700px; margin: 16px auto 0; border: 1px solid #66512a; border-radius: 9px; padding: 11px 14px; background: rgb(82 62 22 / 22%); color: #f0d79d; }
 .results { margin: 0 auto 30px; }
 .work-card { margin-bottom: 15px; padding: 18px 20px; border: 1px solid #47415e; border-radius: 12px; background: linear-gradient(120deg, rgb(41 34 64 / 80%), rgb(19 24 38 / 97%)); }
 .work-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }

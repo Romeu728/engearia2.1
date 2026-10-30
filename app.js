@@ -25,6 +25,21 @@ for (const example of examples) {
 
 exportButton.addEventListener("click", exportProject);
 document.querySelector("#download-game").addEventListener("click", downloadGame);
+researchButton.disabled = true;
+checkBackendAvailability();
+
+async function checkBackendAvailability() {
+  try {
+    const response = await fetch("/api/status", { headers: { Accept: "application/json" } });
+    const status = await response.json();
+    if (!response.ok || !status.researchAvailable) throw new Error("backend indisponível");
+    researchButton.disabled = false;
+  } catch {
+    researchButton.disabled = true;
+    statusMessage.textContent = "Esta página está publicada como demonstração. Para pesquisar jogos e gerar um projeto personalizado, o servidor de IA ainda precisa ser instalado e configurado.";
+    statusMessage.classList.add("deployment-notice");
+  }
+}
 
 async function research(idea) {
   const cleanedIdea = idea.trim();
@@ -57,6 +72,7 @@ async function research(idea) {
     if (token === activeJobToken) {
       researchButton.disabled = false;
       researchButton.innerHTML = '<span aria-hidden="true">⌕</span> Estudar e criar';
+      checkBackendAvailability();
     }
   }
 }
