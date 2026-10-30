@@ -1,0 +1,48 @@
+name: Publish Forja page
+
+on:
+  push:
+    branches:
+      - romeu728-analise-formatos-protocolos
+    paths:
+      - "index.html"
+      - "app.js"
+      - "styles.css"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site
+        run: |
+          mkdir public
+          cp index.html app.js styles.css public/
+
+      - name: Package static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4
