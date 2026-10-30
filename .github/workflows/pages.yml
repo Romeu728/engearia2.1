@@ -33,13 +33,15 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare static site
+        run: |
+          mkdir public
+          cp index.html app.js styles.css public/
+
       - name: Package static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            index.html
-            app.js
-            styles.css
+          path: public/
 
       - name: Deploy site
         id: deployment
