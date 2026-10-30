@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Forja — pesquisa e criação de jogos</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Forja, início"><span class="brand-mark">F</span> forja<span class="brand-dot">.</span></a>
+    <span class="online-badge"><span aria-hidden="true">●</span> PESQUISA NA WEB</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">PESQUISE. ENTENDA. REINVENTE.</p>
+      <h1>Uma ideia de jogo<br>começa com uma busca.</h1>
+      <p class="hero-copy">Diga quais jogos quer combinar. A Forja pesquisa cada um separadamente, mostra os links que encontrou e só depois estuda como transformar as ideias em um projeto original.</p>
+      <form id="research-form" class="search-form">
+        <label for="idea" class="visually-hidden">Descreva o jogo, referência ou mistura que quer pesquisar</label>
+        <input id="idea" name="idea" maxlength="180" placeholder="Ex.: GTA 1 + Minecraft" autocomplete="off" required>
+        <button id="research-button" class="button button-primary" type="submit"><span aria-hidden="true">⌕</span> Estudar e criar</button>
+      </form>
+      <p class="examples">Experimente: <button type="button" class="example" data-example="GTA 1 + Minecraft">GTA 1 + Minecraft</button><button type="button" class="example" data-example="Pokémon + exploração espacial">Pokémon + exploração espacial</button></p>
+      <p id="status" class="status" role="status" aria-live="polite">A pesquisa usa resultados públicos da web. Não acessa contas, serviços privados ou conteúdo protegido por login. Se você configurar um modelo, o texto da sua ideia e trechos públicos encontrados serão enviados ao provedor escolhido.</p>
+    </section>
+
+    <section id="results" class="results" hidden aria-live="polite">
+      <div class="section-title">
+        <div><p class="eyebrow">SEU LABORATÓRIO</p><h2 id="result-heading">Pesquisa</h2></div>
+        <button id="export-button" class="button button-secondary" type="button" hidden>Exportar projeto</button>
+      </div>
+      <section class="work-card" aria-labelledby="work-title">
+        <div class="work-heading"><div><p class="eyebrow">PESQUISA EM ANDAMENTO</p><h3 id="work-title">Estudando suas referências</h3></div><span id="progress-value">0%</span></div>
+        <progress id="research-progress" value="0" max="100">0%</progress>
+        <p id="phase-message" class="muted">Preparando a pesquisa…</p>
+        <ol id="job-log" class="job-log" aria-live="polite"></ol>
+      </section>
+      <div class="result-grid">
+        <section class="result-card" aria-labelledby="research-title">
+          <div class="card-title"><span class="step">01</span><div><p class="eyebrow">PRIMEIRO: AS FONTES</p><h3 id="research-title">Links que a IA está estudando</h3></div></div>
+          <p id="research-summary" class="muted"></p>
+          <div id="sources" class="sources"></div>
+        </section>
+        <section id="study-card" class="result-card" aria-labelledby="study-title">
+          <div class="card-title"><span class="step">02</span><div><p class="eyebrow">LEITURA POR REFERÊNCIA</p><h3 id="study-title">O que foi estudado</h3></div></div>
+          <div id="studies" class="idea-content"><p class="muted">Os links aparecem primeiro. A IA vai estudar cada referência separadamente antes de combiná-las.</p></div>
+        </section>
+      </div>
+      <section id="game-section" class="game-section" hidden aria-labelledby="game-title">
+        <p class="eyebrow">FONTES ESTUDADAS · AGORA O JOGO</p>
+        <div id="concept" class="concept-card"></div>
+        <section class="result-card game-design-card" aria-labelledby="design-title">
+          <div class="card-title"><span class="step">03</span><div><p class="eyebrow">PROJETO ORIGINAL</p><h3 id="design-title">Como a combinação funciona</h3></div></div>
+          <div id="original-idea" class="idea-content"></div>
+        </section>
+        <section class="result-card prototype-card" aria-labelledby="prototype-title">
+          <div class="card-title"><span class="step">04</span><div><p class="eyebrow">JOGO GERADO PELA IA</p><h3 id="prototype-title">Seu jogo original</h3></div></div>
+          <p id="prototype-intro" class="muted prototype-intro">O jogo ficará disponível aqui depois que a pesquisa e a criação terminarem.</p>
+          <div class="game-download-row">
+            <p class="muted">O jogo roda isolado no navegador. Baixe o HTML para guardar e abrir no seu computador.</p>
+            <button id="download-game" class="button button-primary" type="button">Baixar jogo HTML</button>
+          </div>
+          <iframe id="game-frame" class="game-frame" title="Jogo original gerado pela Forja" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+        </section>
+        <p class="note">As referências pertencem aos seus autores. O projeto combina princípios gerais; personagens, cenários, mapas, histórias, arte e código devem ser originais.</p>
+      </section>
+    </section>
+  </main>
+  <footer>Forja · ferramenta experimental de pesquisa e ideação · fontes externas podem mudar ou ficar indisponíveis. O acesso é limitado a resultados públicos e algumas páginas podem impedir a leitura automatizada.</footer>
+</body>
+</html>
